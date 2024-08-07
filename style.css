@@ -94,7 +94,8 @@ h3 {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* 변경: cover에서 contain으로 */
+    background-color: #f0f0f0;
 }
 .project-details {
     margin-bottom: 15px;
@@ -222,27 +223,169 @@ h3 {
     transform: translateY(0); /* 초기 위치 설정 */
     transition: opacity 0.3s, transform 0.5s; /* 부드러운 전환 효과 */
 }
-.contact-form {
-    max-width: 500px;
-    margin: 0 auto;
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
-.contact-form input, .contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+
+.email-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
 }
-.contact-form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+
+.email-container a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.email-container a:hover {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #4CAF50;
+}
+
+.thumbnails {
+    display: inline-flex;
+}
+
+.thumbnails::-webkit-scrollbar {
+    display: none;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 45px; /* 16:9 aspect ratio */
+    object-fit: cover;
+    margin-right: 10px;
     cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
 }
-.contact-form button:hover {
-    background-color: #45a049;
+
+.thumbnail:hover, .thumbnail.active {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.thumbnail-container {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 10px; /* 패딩 추가 */
+    box-sizing: border-box; /* 박스 사이징 변경 */
+}
+
+.about-me {
+    position: relative;
+    overflow: visible;
+    padding: 40px 20px;
+}
+
+.about-me::before, .about-me::after {
+    content: "<code>";
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.15;  /* 약간 증가 */
+    color: #64ffda;  /* 색상 변경 */
+    font-family: monospace;
+    z-index: 0;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.1);  /* 그림자 효과 추가 */
+}
+
+.about-me::before {
+    top: -30px;
+    left: -10px;
+}
+
+.about-me::after {
+    content: "</code>";
+    bottom: -30px;
+    right: -10px;
+}
+
+.about-me-content {
+    position: relative;
+    z-index: 1;
+    text-align: justify;
+    line-height: 1.8;
+    color: #ffffff;
+}
+
+.about-me-content p {
+    margin-bottom: 1.5em;
+    opacity: 1;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.about-me-content .intro, .about-me-content .vision {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.highlight {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.feature, .technical-challenge, .learning-experience, .future-plans {
+    margin-bottom: 20px;
+}
+
+.future-plans {
+    background: rgba(100, 255, 218, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.future-plans h4 {
+    color: #64ffda;
+    margin-bottom: 15px;
+}
+
+.future-plans ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.future-plans li {
+    margin-bottom: 20px;
+}
+
+.future-plans strong {
+    color: #ffffff;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.future-plans p {
+    color: #e0e0e0;
+    font-size: 0.9em;
+    line-height: 1.6;
 }
 
 /* 모바일대응 */
@@ -280,5 +423,18 @@ h3 {
         border: medium solid white;
         border-width: 10px 10px 10px 0;
         border-color: transparent white transparent transparent;
+    }
+    .contact-info {
+        flex-direction: column;
+    }
+    .thumbnail {
+        width: 60px;
+        height: 34px;
+    }
+    .about-me-content {
+        font-size: 0.9em;
+    }
+    .about-me-content .intro, .about-me-content .vision {
+        font-size: 1em;
     }
 }

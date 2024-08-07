@@ -149,23 +149,17 @@ gsap.to(".contact-links a", {
     ease: "power3.out"
 });
 
-// Formspree form submission handling
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var message = document.getElementById('message').value;
+// 썸네일 클릭
+document.querySelectorAll('.project').forEach(project => {
+    const mainImage = project.querySelector('.project-image');
+    const thumbnails = project.querySelectorAll('.thumbnail');
 
-    // Here you would typically send this data to a server
-    // For this example, we'll just log it to the console
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Message:', message);
-
-    // Clear the form
-    this.reset();
-
-    // Show a success message (you can replace this with a more user-friendly notification)
-    alert('보내는 척만 해봤습니다!');
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            mainImage.src = this.src;
+            mainImage.alt = this.alt;
+            thumbnails.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 });
