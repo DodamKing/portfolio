@@ -10,17 +10,39 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.waves.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
     <body>
         <div id="background"></div>
         <div class="container">
-            <h1>Kim Do Dam</h1>
-            <div class="subtitle-container">
-                <div class="subtitle" id="typing-text"></div>
+            <div class="header">
+                <div class="header-content">
+                    <h1>Kim Do Dam</h1>
+                    <div class="subtitle-container">
+                        <div class="subtitle" id="typing-text"></div>
+                    </div>
+                </div>
+                <div class="profile-image-container">
+                    <svg width="250" height="200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="#1e1e1e"/>
+                        <circle cx="210" cy="120" r="40" fill="#4CAF50" opacity="0.5"/>
+                        <rect x="180" y="40" width="60" height="60" fill="#2196F3" opacity="0.5"/>
+                        <polygon points="160,160 190,100 130,100" fill="#FFC107" opacity="0.5"/>
+                        <text x="10" y="20" font-family="monospace" font-size="12" fill="#A9A9A9">
+                            <tspan x="10" dy="1.2em"><tspan fill="#4CAF50">function</tspan> developer() {</tspan>
+                            <tspan x="20" dy="1.2em">return {</tspan>
+                            <tspan x="30" dy="1.2em">name: <tspan fill="#FF6B6B">'Kim Do Dam'</tspan>,</tspan>
+                            <tspan x="30" dy="1.2em">skills: [<tspan fill="#4ECDC4">'JS'</tspan>, <tspan fill="#45B7D1">'Vue'</tspan>, <tspan fill="#FCBF49">'Node'</tspan>],</tspan>
+                            <tspan x="30" dy="1.2em">passion: <tspan fill="#FF6B6B">Infinity</tspan></tspan>
+                            <tspan x="20" dy="1.2em">};</tspan>
+                            <tspan x="10" dy="1.2em">}</tspan>
+                        </text>
+                    </svg>
+                </div>
             </div>
 
             <div class="section about-me">
-                <h2>About Me</h2>
+                <h2 class="neon-text">About Me</h2>
                 <div class="about-me-content">
                     <p class="intro">안녕하세요, <span class="highlight">끊임없는 호기심과 열정</span>으로 소프트웨어를 개발하는 <span class="highlight">김도담</span>입니다. 백엔드 개발을 중심으로 풀스택 역량을 키워가고 있습니다.</p>
                     <p>제가 개발자의 길을 선택한 이유는 단순합니다. <span class="highlight">기술로 우리의 일상을 더 편리하게 만들 수 있다는 믿음</span> 때문입니다.</p>
@@ -57,7 +79,9 @@
                         </ul>
                     </section>
                     <div class="project-image-container">
-                        <img src="images/stock_1.jpg" alt="Project Image 1" class="project-image" id="main-image">
+                        <div class="mobile-screenshots">
+                            <img src="images/stock_1.jpg" alt="Project Image 1" class="mobile-screen" id="main-image">
+                        </div>
                     </div>
                     <div class="thumbnail-container">
                         <div class="thumbnails">
@@ -106,12 +130,12 @@
                         </ul>
                     </section>
                     <div class="project-links">
-                        <a href="https://github.com/DodamKing/stock-master">GitHub Repo</a>
-                        <a href="#">Live Demo</a>
+                        <a href="https://github.com/DodamKing/stock-master" target="_blank">GitHub Repo</a>
+                        <!-- <a href="#">Live Demo</a> -->
                     </div>
                 </div>
                 <div class="project">
-                    <h3>Headline Hub: 실시간 뉴스 헤드라인 에그리게이터</h3>
+                    <h3>Headline Hub: 실시간 뉴스 한눈에 보기</h3>
                     <section class="project-overview">
                         <p>Headline Hub는 사용자에게 다양한 소스의 최신 뉴스 헤드라인을 한 곳에서 제공하는 웹 애플리케이션입니다. 정보의 홍수 속에서 사용자가 효율적으로 중요한 뉴스를 파악할 수 있도록 돕는 것이 이 프로젝트의 핵심 목표입니다.</p>
                     </section>
@@ -146,8 +170,8 @@
                         <!-- <p>사용자 피드백을 바탕으로 자연어 처리(NLP) 기술을 도입하여 뉴스 요약 기능을 추가할 예정입니다. 또한, 소셜 미디어 통합을 통해 뉴스 공유 및 토론 기능을 구현하여 커뮤니티 요소를 강화할 계획입니다.</p> -->
                     </section>
                     <div class="project-links">
-                        <a href="https://github.com/DodamKing/headlineHub">GitHub Repo</a>
-                        <a href="#">Live Demo</a>
+                        <a href="https://github.com/DodamKing/headlineHub" target="_blank">GitHub Repo</a>
+                        <a href="#" class="disabled-link">Live Demo</a>
                     </div>
                 </div>
                 <div class="project">
@@ -159,7 +183,7 @@
                         <h4>주요 기능</h4>
                         <ul>
                             <li><strong>실시간 음원 차트:</strong> Python과 Selenium을 이용해 Top 100 음원 차트를 주기적으로 크롤링하여 최신 트렌드를 제공합니다.</li>
-                            <li><strong>고급 웹 플레이어:</strong> 재생, 일시정지, 다음곡, 재생목록, 반복재생, 셔플 등 풀 기능 웹 플레이어를 자체 개발하여 제공합니다.</li>
+                            <li><strong>웹 플레이어:</strong> 재생, 일시정지, 다음곡, 재생목록, 반복재생, 셔플 등 풀 기능 웹 플레이어를 자체 개발하여 제공합니다.</li>
                             <li><strong>개인화 기능:</strong> 사용자별 플레이리스트 생성, Local Storage를 활용한 재생 정보 저장 등 개인화된 음악 경험을 제공합니다.</li>
                             <li><strong>사용자 관리:</strong> 자체 로그인 시스템과 카카오 소셜 로그인을 지원하며, 비밀번호 찾기 등 편의 기능을 제공합니다.</li>
                             <li><strong>관리자 기능:</strong> 회원 관리, 음원 정보 관리 등 서비스 운영에 필요한 관리자 기능을 구현했습니다.</li>
@@ -188,8 +212,8 @@
                         <p>이 프로젝트는 기존 Java 기반 프로젝트를 새로운 기술 스택인 Node.js로 재구현하고 고도화한 작업입니다. 이 과정에서 Node.js의 비동기 처리, Express.js를 이용한 서버 구축, MongoDB를 활용한 NoSQL 데이터베이스 관리 등을 심도있게 학습했습니다. 또한, 웹 크롤링, 주기적 작업 스케줄링, 프론트엔드와 백엔드의 효과적인 통합 등 풀스택 개발의 다양한 측면을 경험할 수 있었습니다.</p>
                     </section>
                     <div class="project-links">
-                        <a href="https://github.com/DodamKing/DIBE">GitHub Repo</a>
-                        <a href="#">Live Demo</a>
+                        <a href="https://github.com/DodamKing/DIBE" target="_blank">GitHub Repo</a>
+                        <a href="#" class="disabled-link">Live Demo</a>
                     </div>
                 </div>
                 <div class="project">
@@ -285,6 +309,13 @@
                     </div>
                 </div>
             </div>
+
+            <button id="scrollToTopBtn" aria-label="Scroll to top of page"><i class="fas fa-arrow-up"></i></button>
+        </div>
+
+        <canvas id="particle-canvas"></canvas>
+
+        <script src="particel.js"></script>
         <script src="index.js"></script>
     </body>
 </html>
