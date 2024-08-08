@@ -8,61 +8,60 @@ VANTA.WAVES({
     minWidth: 200.00,
     scale: 1.00,
     scaleMobile: 1.00,
-    color: 0x2b28,
+    // color: 0x2b28,
+    color: 0x1A4A3D,
     shininess: 42.00,
     waveHeight: 20.00,
     waveSpeed: 1.05,
-    zoom: 0.65
+    zoom: 0.5,
 })
 
 // Typing effect
 const phrases = [
     "Full-Stack Developer",
+    "JavaScript Enthusiast",
     "Problem Solver",
-    "Tech Enthusiast"
+    "Continuous Learner"
 ];
-let i = 0;
-let j = 0;
-let currentPhrase = [];
+
+let currentPhraseIndex = 0;
+let currentCharIndex = 0;
 let isDeleting = false;
-let isEnd = false;
 
-function loop() {
-    isEnd = false;
-    document.getElementById('typing-text').innerHTML = currentPhrase.join('');
-
-    if (i < phrases.length) {
-        if (!isDeleting && j <= phrases[i].length) {
-            currentPhrase.push(phrases[i][j]);
-            j++;
-        }
-
-        if (isDeleting && j <= phrases[i].length) {
-            currentPhrase.pop(phrases[i][j]);
-            j--;
-        }
-
-        if (j == phrases[i].length) {
-            isEnd = true;
-            isDeleting = true;
-        }
-
-        if (isDeleting && j === 0) {
-            currentPhrase = [];
-            isDeleting = false;
-            i++;
-            if (i === phrases.length) {
-                i = 0;
-            }
-        }
-    }
-    const spedUp = Math.random() * (80 - 50) + 50;
-    const normalSpeed = Math.random() * (300 - 200) + 200;
-    const time = isEnd ? 2000 : isDeleting ? spedUp : normalSpeed;
-    setTimeout(loop, time);
+function getRandomTypingSpeed(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-loop();
+function typeEffect() {
+    const currentPhrase = phrases[currentPhraseIndex];
+    const typingTextElement = document.getElementById('typing-text');
+
+    if (!isDeleting && currentCharIndex <= currentPhrase.length) {
+        typingTextElement.textContent = currentPhrase.slice(0, currentCharIndex);
+        currentCharIndex++;
+    }
+
+    if (isDeleting && currentCharIndex >= 0) {
+        typingTextElement.textContent = currentPhrase.slice(0, currentCharIndex);
+        currentCharIndex--;
+    }
+
+    if (currentCharIndex === currentPhrase.length + 1) {
+        isDeleting = true;
+        setTimeout(typeEffect, 2000); // 문구 완성 후 2초 대기
+        return;
+    }
+
+    if (currentCharIndex === 0 && isDeleting) {
+        isDeleting = false;
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+    }
+
+    const typingSpeed = isDeleting ? getRandomTypingSpeed(30, 50) : getRandomTypingSpeed(40, 80);
+    setTimeout(typeEffect, typingSpeed);
+}
+
+typeEffect();
 
 // GSAP Animations
 gsap.registerPlugin(ScrollTrigger);
@@ -83,6 +82,7 @@ document.querySelectorAll('.section').forEach((section) => {
         },
         opacity: 1,
         y: 0,
+        scale: 1,
         duration: 1,
         ease: "power3.out"
     });
@@ -151,7 +151,7 @@ gsap.to(".contact-links a", {
 
 // 썸네일 클릭
 document.querySelectorAll('.project').forEach(project => {
-    const mainImage = project.querySelector('.project-image');
+    const mainImage = project.querySelector('#main-image');
     const thumbnails = project.querySelectorAll('.thumbnail');
 
     thumbnails.forEach(thumb => {
@@ -162,4 +162,33 @@ document.querySelectorAll('.project').forEach(project => {
             this.classList.add('active');
         });
     });
+});
+
+// 버튼 표시/숨김 처리
+const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY || window.pageYOffset;
+    if (scrollPosition > 300) {
+        scrollToTopBtn.classList.add("show");
+    } else {
+        scrollToTopBtn.classList.remove("show");
+    }
+});
+
+// 버튼 클릭 시 맨 위로 스크롤
+scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+// 마우스 따라옴
+const cursor = document.createElement('div');
+cursor.className = 'custom-cursor';
+document.body.appendChild(cursor);
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
 });
