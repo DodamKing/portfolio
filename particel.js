@@ -12,7 +12,7 @@ function init() {
     const geometry = new THREE.BufferGeometry();
     const vertices = [];
 
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 5000; i++) {
         const x = Math.random() * 2000 - 1000;
         const y = Math.random() * 2000 - 1000;
         const z = Math.random() * 2000 - 1000;
@@ -21,7 +21,14 @@ function init() {
 
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
-    const material = new THREE.PointsMaterial({ color: 0xffffff, size: 2 });
+    // const material = new THREE.PointsMaterial({ color: 0xffffff, size: 2 });
+    const material = new THREE.PointsMaterial({ 
+        color: 0xffffff, 
+        size: 1,  // 크기 축소
+        opacity: 0.3, 
+        transparent: true 
+    });
+    
 
     particles = new THREE.Points(geometry, material);
     scene.add(particles);

@@ -1,21 +1,3 @@
-// Animated background
-VANTA.WAVES({
-    el: "#background",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    // color: 0x2b28,
-    color: 0x1A4A3D,
-    shininess: 42.00,
-    waveHeight: 20.00,
-    waveSpeed: 1.05,
-    zoom: 0.5,
-})
-
 // Typing effect
 const phrases = [
     "Full-Stack Developer",
@@ -48,7 +30,7 @@ function typeEffect() {
 
     if (currentCharIndex === currentPhrase.length + 1) {
         isDeleting = true;
-        setTimeout(typeEffect, 2000); // 문구 완성 후 2초 대기
+        setTimeout(typeEffect, 2000); // Wait for 2 seconds after completing the phrase
         return;
     }
 
@@ -68,8 +50,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Animate elements
 gsap.from("h1", {opacity: 0, y: -50, duration: 1, ease: "power3.out"});
-// gsap.from(".section", {opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: "power3.out"});
-// gsap.from(".skill", {opacity: 0, scale: 0.5, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)"});
 
 // Section animations
 document.querySelectorAll('.section').forEach((section) => {
@@ -149,7 +129,7 @@ gsap.to(".contact-links a", {
     ease: "power3.out"
 });
 
-// 썸네일 클릭
+// Thumbnail click handler
 document.querySelectorAll('.project').forEach(project => {
     const mainImage = project.querySelector('#main-image');
     const thumbnails = project.querySelectorAll('.thumbnail');
@@ -164,7 +144,7 @@ document.querySelectorAll('.project').forEach(project => {
     });
 });
 
-// 버튼 표시/숨김 처리
+// Scroll to top button
 const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 window.addEventListener("scroll", () => {
     const scrollPosition = window.scrollY || window.pageYOffset;
@@ -175,20 +155,9 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// 버튼 클릭 시 맨 위로 스크롤
 scrollToTopBtn.addEventListener("click", () => {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-});
-
-// 마우스 따라옴
-const cursor = document.createElement('div');
-cursor.className = 'custom-cursor';
-document.body.appendChild(cursor);
-
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
 });
